@@ -390,6 +390,177 @@
     .page-header { margin-bottom: 32px; }
     .phase { break-inside: avoid; margin-bottom: 36px; }
   }
+:root{
+  --bg:#11110f;
+  --surface:#2f2c2c;
+  --surface-alt:#3a3636;
+
+  --text:#f3f1ea;
+  --muted:#a8a39a;
+
+  --accent:#cbb98a;
+  --border:rgba(203,185,138,.15);
+
+  --mono:'IBM Plex Mono', monospace;
+  --body:'Inter', sans-serif;
+}
+
+/* GLOBAL */
+
+body,
+html{
+  background:var(--bg)!important;
+  color:var(--text)!important;
+  font-family:var(--body)!important;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+h1,h2,h3,h4,h5,h6{
+  color:var(--text)!important;
+}
+
+p,
+li,
+span:not(.phase-label){
+  color:var(--muted)!important;
+}
+
+/* MAIN CONTAINER */
+
+.timeline-container,
+.infographic-container,
+.wrapper,
+.container{
+  background:transparent!important;
+}
+
+/* HEADER */
+
+.main-title,
+.page-title,
+.hero-title{
+  color:var(--text)!important;
+  font-family:var(--mono)!important;
+  text-transform:uppercase!important;
+  letter-spacing:.04em!important;
+}
+
+.subtitle,
+.hero-subtitle{
+  color:var(--muted)!important;
+}
+
+/* PHASE BARS */
+
+.phase-header,
+.phase-banner{
+  background:rgba(255,255,255,.03)!important;
+  border:1px solid var(--border)!important;
+  color:var(--text)!important;
+  backdrop-filter:blur(6px);
+}
+
+.phase-header h2,
+.phase-banner h2{
+  color:var(--text)!important;
+}
+
+/* CARDS */
+
+.card,
+.timeline-card,
+.step-card,
+.journey-card{
+  background:rgba(255,255,255,.02)!important;
+  border:1px solid var(--border)!important;
+  border-radius:18px!important;
+  box-shadow:none!important;
+}
+
+.card h3,
+.card-title,
+.step-title{
+  color:var(--text)!important;
+}
+
+/* TIMELINE NUMBERS */
+
+.step-number,
+.timeline-number,
+.badge{
+  background:var(--accent)!important;
+  color:#11110f!important;
+  border:none!important;
+}
+
+/* LINES */
+
+.timeline-line,
+.connector,
+.vertical-line{
+  background:var(--border)!important;
+}
+
+/* LABELS */
+
+.label,
+.phase-label,
+.small-label{
+  color:var(--accent)!important;
+  font-family:var(--mono)!important;
+  letter-spacing:.18em!important;
+  text-transform:uppercase!important;
+}
+
+/* PRICE BLOCKS */
+
+.price-card,
+.pricing-card{
+  background:rgba(255,255,255,.02)!important;
+  border:1px solid var(--border)!important;
+}
+
+.price,
+.amount{
+  color:var(--text)!important;
+  font-weight:700!important;
+}
+
+.price-highlight,
+.featured-price{
+  color:var(--accent)!important;
+}
+
+/* PRIVATE LAB */
+
+.private-lab,
+.phase-three{
+  background:rgba(255,255,255,.03)!important;
+  border:1px solid var(--border)!important;
+}
+
+/* REMOVE WHITE SHADOWS */
+
+*{
+  box-shadow:none!important;
+}
+
+/* THL GRID EFFECT */
+
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(203,185,138,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(203,185,138,.04) 1px, transparent 1px);
+  background-size:56px 56px;
+  z-index:-1;
+}
 </style>
 </head>
 <body>

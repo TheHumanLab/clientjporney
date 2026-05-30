@@ -3,21 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Human Systems — Client Journey</title>
+<title>Human Systems - Client Journey</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
- :root {
-  --bg:       #1D1C17;
-  --surface:  #403D3D;
-  --accent:   #CCB98D;
-  --text:     #E8E6E1;
-  --muted:    #9C9A94;
-  --border:   #2A2924;
-  --error:    #B85450;
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-body: 'Inter', sans-serif;
+  :root {
+    --bg: #1D1C17;
+    --surface: #403D3D;
+    --accent: #CCB98D;
+    --text: #E8E6E1;
+    --muted: #9C9A94;
+    --border: #2A2924;
+    --error: #B85450;
+    --shadow: 0 8px 24px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3);
   }
   
   * { box-sizing: border-box; }
@@ -26,7 +25,7 @@
     margin: 0;
     padding: 0;
     background: var(--bg);
-    color: var(--ink);
+    color: var(--text);
     font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     line-height: 1.5;
@@ -62,7 +61,7 @@
     letter-spacing: -0.02em;
     font-weight: 700;
     margin: 0 0 12px;
-    color: var(--navy);
+    color: var(--text);
   }
   
   .subtitle {
@@ -80,46 +79,35 @@
   .phase-header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 16px;
     padding: 18px 24px;
     border-radius: 16px;
-    color: white;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    color: var(--text);
     margin-bottom: 36px;
     position: relative;
-    overflow: hidden;
   }
-  
-  .phase-header::after {
-    content: '';
-    position: absolute;
-    right: -40px;
-    top: -40px;
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
-    border-radius: 50%;
-  }
-  
-  .phase-1 { background: var(--navy); }
-  .phase-2 { background: var(--teal); }
-  .phase-3 { background: var(--charcoal); }
   
   .phase-icon {
     width: 44px;
     height: 44px;
     display: grid;
     place-items: center;
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(204,185,141,0.08);
+    border: 1px solid rgba(204,185,141,0.18);
     border-radius: 12px;
     flex-shrink: 0;
+    color: var(--accent);
   }
   
   .phase-label {
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    opacity: 0.8;
+    color: var(--muted);
     font-weight: 600;
     display: block;
     margin-bottom: 2px;
@@ -130,14 +118,7 @@
     margin: 0;
     font-weight: 600;
     letter-spacing: -0.01em;
-  }
-  
-  .phase-header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    gap: 16px;
+    color: var(--text);
   }
   
   .badge {
@@ -146,10 +127,11 @@
     text-transform: uppercase;
     font-weight: 600;
     padding: 6px 12px;
-    background: rgba(255,255,255,0.14);
-    border: 1px solid rgba(255,255,255,0.22);
+    background: rgba(204,185,141,0.1);
+    border: 1px solid rgba(204,185,141,0.25);
     border-radius: 999px;
     white-space: nowrap;
+    color: var(--accent);
   }
   
   .timeline {
@@ -164,7 +146,7 @@
     top: 8px;
     bottom: 8px;
     width: 2px;
-    background: linear-gradient(to bottom, var(--line), var(--line));
+    background: linear-gradient(to bottom, rgba(204,185,141,0.4), rgba(204,185,141,0.15));
   }
   
   .step {
@@ -183,8 +165,9 @@
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 7px solid #D1CFC7;
+    border-top: 7px solid var(--accent);
     transform: translateX(24px);
+    opacity: 0.7;
   }
   
   .step-number {
@@ -197,33 +180,33 @@
     display: grid;
     place-items: center;
     font-size: 13px;
-    font-weight: 600;
-    color: white;
-    background: var(--accent, var(--navy));
-    box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--line);
+    font-weight: 700;
+    color: var(--bg);
+    background: var(--accent);
+    box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--border);
     z-index: 2;
   }
   
   .step-card {
-    background: var(--paper);
+    background: var(--surface);
     border-radius: 16px;
     padding: 22px 24px 20px;
     box-shadow: var(--shadow);
-    border: 1px solid #F0EDE6;
+    border: 1px solid var(--border);
     position: relative;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   
   .step-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(30, 42, 68, 0.08), 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.35);
   }
   
   .step-card h3 {
     font-size: 17px;
     margin: 0 0 10px;
     font-weight: 600;
-    color: var(--ink);
+    color: var(--text);
     letter-spacing: -0.01em;
   }
   
@@ -234,7 +217,7 @@
   
   .meta strong {
     font-weight: 550;
-    color: #2b2b2b;
+    color: var(--text);
     margin-right: 4px;
   }
   
@@ -259,39 +242,37 @@
     position: absolute;
     left: 0;
     top: 0;
-    color: #B5AFA3;
+    color: var(--accent);
     font-weight: 700;
+    opacity: 0.8;
   }
-  
-  .phase[data-accent="navy"] { --accent: var(--navy); }
-  .phase[data-accent="teal"] { --accent: var(--teal); }
   
   .callout {
     margin: 36px 0 0 84px;
-    background: #FFFEFC;
-    border: 1px solid #E8DFCB;
-    border-left: 4px solid var(--navy);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
     border-radius: 12px;
     padding: 16px 20px;
     font-size: 14px;
-    color: #3f3a31;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    color: var(--text);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
   }
   
   .callout strong {
     font-weight: 650;
     letter-spacing: 0.02em;
-    color: var(--navy);
+    color: var(--accent);
     margin-right: 6px;
   }
   
   .private-card {
-    background: var(--paper);
+    background: var(--surface);
     border-radius: 16px;
     padding: 26px 28px;
     box-shadow: var(--shadow);
-    border: 1px solid #F0EDE6;
-    border-left: 4px solid var(--charcoal);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
     margin-left: 0;
   }
   
@@ -314,36 +295,36 @@
   .private-item p {
     margin: 0;
     font-size: 14.5px;
-    color: #333;
+    color: var(--text);
   }
   
   .pricing {
     margin-top: 72px;
-    background: var(--paper);
+    background: var(--surface);
     border-radius: 20px;
     padding: 8px;
     box-shadow: var(--shadow);
-    border: 1px solid #EDE8DF;
+    border: 1px solid var(--border);
   }
   
   .pricing-inner {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1px;
-    background: #F1EDE3;
+    background: var(--border);
     border-radius: 14px;
     overflow: hidden;
   }
   
   .price {
-    background: white;
+    background: var(--surface);
     padding: 24px 20px;
     text-align: center;
   }
   
   .price-label {
     font-size: 12.5px;
-    color: var(--muted);
+    color: var(--text);
     font-weight: 500;
     margin-bottom: 8px;
     line-height: 1.3;
@@ -353,18 +334,14 @@
     font-size: 26px;
     font-weight: 700;
     letter-spacing: -0.02em;
-    color: var(--ink);
+    color: var(--accent);
   }
-  
-  .price:nth-child(1) .price-value { color: var(--navy); }
-  .price:nth-child(2) .price-value { color: var(--teal); }
-  .price:nth-child(3) .price-value { color: var(--charcoal); }
   
   .footer {
     text-align: center;
     margin-top: 28px;
     font-size: 12px;
-    color: #9A9385;
+    color: var(--muted);
     letter-spacing: 0.04em;
   }
   
@@ -372,7 +349,7 @@
     .wrap { padding: 40px 18px 60px; }
     .timeline { padding-left: 62px; }
     .timeline::before { left: 24px; }
-    .step-number { left: -50px; width: 32px; height: 32px; font-size: 12px; top: 14px; box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px var(--line); }
+    .step-number { left: -50px; width: 32px; height: 32px; font-size: 12px; top: 14px; box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px var(--border); }
     .step:not(:last-child)::after { left: -39px; transform: translateX(24px); }
     .callout { margin-left: 0; }
     .private-grid { grid-template-columns: 1fr; gap: 16px; }
@@ -382,185 +359,17 @@
   }
   
   @media print {
-    body { background: white; }
+    body { background: white; color: #000; }
     .wrap { padding: 0; }
     .container { max-width: 100%; }
-    .step-card, .private-card, .pricing { box-shadow: none; border: 1px solid #DDD; }
+    .step-card, .private-card, .pricing, .phase-header, .callout { box-shadow: none; border: 1px solid #DDD !important; background: white !important; color: #000; }
     .step-card:hover { transform: none; }
     .page-header { margin-bottom: 32px; }
     .phase { break-inside: avoid; margin-bottom: 36px; }
+    .step-number { background: #000 !important; color: #fff !important; box-shadow: none !important; }
+    h1, .phase-header h2, .step-card h3, .meta strong { color: #000 !important; }
+    .subtitle, .meta, .eyebrow { color: #333 !important; }
   }
-:root{
-  --bg:#11110f;
-  --surface:#2f2c2c;
-  --surface-alt:#3a3636;
-
-  --text:#f3f1ea;
-  --muted:#a8a39a;
-
-  --accent:#cbb98a;
-  --border:rgba(203,185,138,.15);
-
-  --mono:'IBM Plex Mono', monospace;
-  --body:'Inter', sans-serif;
-}
-
-/* GLOBAL */
-
-body,
-html{
-  background:var(--bg)!important;
-  color:var(--text)!important;
-  font-family:var(--body)!important;
-}
-
-*{
-  box-sizing:border-box;
-}
-
-h1,h2,h3,h4,h5,h6{
-  color:var(--text)!important;
-}
-
-p,
-li,
-span:not(.phase-label){
-  color:var(--muted)!important;
-}
-
-/* MAIN CONTAINER */
-
-.timeline-container,
-.infographic-container,
-.wrapper,
-.container{
-  background:transparent!important;
-}
-
-/* HEADER */
-
-.main-title,
-.page-title,
-.hero-title{
-  color:var(--text)!important;
-  font-family:var(--mono)!important;
-  text-transform:uppercase!important;
-  letter-spacing:.04em!important;
-}
-
-.subtitle,
-.hero-subtitle{
-  color:var(--muted)!important;
-}
-
-/* PHASE BARS */
-
-.phase-header,
-.phase-banner{
-  background:rgba(255,255,255,.03)!important;
-  border:1px solid var(--border)!important;
-  color:var(--text)!important;
-  backdrop-filter:blur(6px);
-}
-
-.phase-header h2,
-.phase-banner h2{
-  color:var(--text)!important;
-}
-
-/* CARDS */
-
-.card,
-.timeline-card,
-.step-card,
-.journey-card{
-  background:rgba(255,255,255,.02)!important;
-  border:1px solid var(--border)!important;
-  border-radius:18px!important;
-  box-shadow:none!important;
-}
-
-.card h3,
-.card-title,
-.step-title{
-  color:var(--text)!important;
-}
-
-/* TIMELINE NUMBERS */
-
-.step-number,
-.timeline-number,
-.badge{
-  background:var(--accent)!important;
-  color:#11110f!important;
-  border:none!important;
-}
-
-/* LINES */
-
-.timeline-line,
-.connector,
-.vertical-line{
-  background:var(--border)!important;
-}
-
-/* LABELS */
-
-.label,
-.phase-label,
-.small-label{
-  color:var(--accent)!important;
-  font-family:var(--mono)!important;
-  letter-spacing:.18em!important;
-  text-transform:uppercase!important;
-}
-
-/* PRICE BLOCKS */
-
-.price-card,
-.pricing-card{
-  background:rgba(255,255,255,.02)!important;
-  border:1px solid var(--border)!important;
-}
-
-.price,
-.amount{
-  color:var(--text)!important;
-  font-weight:700!important;
-}
-
-.price-highlight,
-.featured-price{
-  color:var(--accent)!important;
-}
-
-/* PRIVATE LAB */
-
-.private-lab,
-.phase-three{
-  background:rgba(255,255,255,.03)!important;
-  border:1px solid var(--border)!important;
-}
-
-/* REMOVE WHITE SHADOWS */
-
-*{
-  box-shadow:none!important;
-}
-
-/* THL GRID EFFECT */
-
-body::before{
-  content:'';
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  background-image:
-    linear-gradient(rgba(203,185,138,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(203,185,138,.04) 1px, transparent 1px);
-  background-size:56px 56px;
-  z-index:-1;
-}
 </style>
 </head>
 <body>
@@ -573,17 +382,19 @@ body::before{
       </header>
 
       <!-- PHASE I -->
-      <section class="phase" data-accent="navy">
+      <section class="phase">
         <div class="phase-header phase-1">
-          <div class="phase-icon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="7.5"></circle>
-              <path d="M21 21l-4.2-4.2"></path>
-            </svg>
-          </div>
-          <div>
-            <span class="phase-label">Phase I</span>
-            <h2>Diagnosis</h2>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div class="phase-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="7.5"></circle>
+                <path d="M21 21l-4.2-4.2"></path>
+              </svg>
+            </div>
+            <div>
+              <span class="phase-label">Phase I</span>
+              <h2>Diagnosis</h2>
+            </div>
           </div>
         </div>
 
@@ -616,7 +427,7 @@ body::before{
             <div class="step-card">
               <h3>Suitability Review™</h3>
               <div class="meta"><strong>Internal THL review</strong></div>
-              <div class="meta"><strong>Outcome:</strong> Suitable or Not Suitable</div>
+              <div class="meta"><strong>Outcome:</strong> Suitable or <span style="color: var(--error); font-weight: 600;">Not Suitable</span></div>
             </div>
           </div>
 
@@ -661,7 +472,7 @@ body::before{
           <div class="step">
             <div class="step-number">07</div>
             <div class="step-card">
-              <h3>Systems Findings Session™</h3>
+              <h3>Diagnostic Findings Session™</h3>
               <div class="meta"><strong>Duration:</strong> 90 min</div>
               <div class="meta"><strong>Reveal:</strong></div>
               <ul class="clean">
@@ -682,18 +493,20 @@ body::before{
       </section>
 
       <!-- PHASE II -->
-      <section class="phase" data-accent="teal">
+      <section class="phase">
         <div class="phase-header phase-2">
-          <div class="phase-icon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-              <polyline points="2 17 12 22 22 17"></polyline>
-              <polyline points="2 12 12 17 22 12"></polyline>
-            </svg>
-          </div>
-          <div>
-            <span class="phase-label">Phase II</span>
-            <h2>Structural Integration™</h2>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div class="phase-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <div>
+              <span class="phase-label">Phase II</span>
+              <h2>Integration (Optional)</h2>
+            </div>
           </div>
         </div>
 
@@ -752,11 +565,16 @@ body::before{
           <div class="private-grid">
             <div class="private-item">
               <h4>Minimum</h4>
-              <p>90-Day Minimum Engagement.</p>
- <strong>90-Day Minimum Engagement</strong>
+              <p>90 day engagement</p>
             </div>
             <div class="private-item">
-              <h4>For clients requiring ongoing structural advisory.</h4>
+              <h4>For clients requiring</h4>
+              <ul class="clean" style="margin-top:4px">
+                <li>Ongoing structural advisory</li>
+                <li>Strategic decision support</li>
+                <li>Pattern monitoring</li>
+                <li>Structural recalibration</li>
+                <li>Priority access</li>
               </ul>
             </div>
           </div>
@@ -784,6 +602,7 @@ body::before{
       <div class="footer">THL Human Systems</div>
     </div>
   </div>
+<script>(function(){document.addEventListener("click",function(e){var a=e.target.closest("[data-product-id]");if(!a)return;e.preventDefault();var pid=a.getAttribute("data-product-id");if(pid)parent.postMessage({type:"ecto-artifact-link-click",productId:pid},"*")})})();</script>
 <script>(function(){document.addEventListener("click",function(e){var a=e.target.closest("[data-product-id]");if(!a)return;e.preventDefault();var pid=a.getAttribute("data-product-id");if(pid)parent.postMessage({type:"ecto-artifact-link-click",productId:pid},"*")})})();</script>
 </body>
 </html>
